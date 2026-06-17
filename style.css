@@ -289,16 +289,22 @@ img {
 
 .card {
     flex-shrink: 0;
-    height: 60vh; /* Фиксированная высота на десктопе */
-    width: auto;  /* ШИРИНА ПОДСТРАИВАЕТСЯ ПОД КОНТЕНТ */
+    width: 450px;
+    height: 600px; /* Увеличили высоту, чтобы точно всё влезло */
     background-color: rgb(75, 85, 58);
     border: 1px solid rgb(201, 201, 167);
-    border-radius: 20px;
-    /* Уменьшили отступы, чтобы рамка была ближе к фото */
-    padding: 15px 15px 20px 15px; 
+    
+    /* ЗАКРУГЛЕНИЕ КАРТОЧКИ */
+    border-radius: 40px; 
+    
+    padding: 30px; /* Внутренний отступ, чтобы рамка не прилипала */
     display: flex;
     flex-direction: column;
     align-items: center;
+    
+    /* Это важно, чтобы контент не выпадал */
+    justify-content: space-between; 
+    overflow: hidden; 
     
     opacity: 0.3;
     transform: scale(0.9);
@@ -311,22 +317,30 @@ img {
 .card.active {
     opacity: 1;
     transform: scale(1);
-    box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.3);
 }
 
 .card-image {
-    height: 100%; /* Занимает всю доступную высоту карточки */
-    width: auto;
+    width: 100%;
+    /* flex: 1 позволяет контейнеру занимать всё свободное место, 
+       но min-height: 0 заставляет его сжиматься, если тексту не хватает места */
+    flex: 1;
+    min-height: 0; 
+    
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
 .card-image img {
-    height: 100%; /* Картинка диктует высоту */
-    width: auto;   /* А ширина пропорционально подстраивается */
-    object-fit: contain;
-    border-radius: 10px;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain; /* Фото сохраняет пропорции и не обрезается */
+    
+    /* ЗАКРУГЛЕНИЕ ИЗОБРАЖЕНИЯ */
+    /* Делаем его чуть меньше, чем у карточки (40 - 20 = 20), 
+       так визуально они будут казаться одинаковыми */
+    border-radius: 20px; 
 }
 
 .card-image::before, .card-image::after {
@@ -336,15 +350,17 @@ img {
 
 .card-content {
     width: 100%;
+    padding-top: 20px; /* Отступ между фото и текстом */
+    flex-shrink: 0; /* Текст не должен сжиматься */
     text-align: center;
-    margin-top: 15px;
 }
 
 .card-text {
     color: rgb(201, 201, 167);
-    font-size: 1rem;
+    font-size: 1.1rem;
     font-weight: 400;
-    white-space: nowrap; /* Чтобы текст не растягивал узкую карточку */
+    line-height: 1.4;
+    margin: 0;
 }
 
 .card.active .card-text {
@@ -531,10 +547,10 @@ img {
     }
 
     .card {
-        height: 50vh; /* На мобилках чуть пониже */
-        width: auto;
-        min-width: 200px;
-        max-width: 85vw; /* Чтобы очень широкие фото не вылезали за экран */
+        width: 85vw;
+        height: 500px;
+        border-radius: 30px; /* На мобилках закругление чуть меньше */
+        padding: 20px;
     }
 
     /* Исправление длинных заголовков в Работах */
@@ -546,8 +562,7 @@ img {
     }
 
     .card-image img {
-        width: 100%; /* На мобилках во всю ширину */
-        height: auto;
+        border-radius: 15px;
     }
 
     .slider-track {
@@ -566,5 +581,9 @@ img {
 
     .category-block {
         padding: 0 20px; /* Убираем большие отступы для кнопок */
+    }
+
+    .card-text {
+        font-size: 1rem;
     }
 }

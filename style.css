@@ -25,6 +25,54 @@ body {
     background-color: rgb(224, 222, 210); 
 }
 
+.about-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 50px;
+}
+
+.photo-wrapper {
+    flex-shrink: 0;
+    position: relative;
+    padding-right: 20px; /* Отступ для смещенной рамки */
+    padding-bottom: 20px;
+}
+
+.photo-frame img {
+    width: 100%;
+    display: block;
+    border: 1px solid rgb(75, 85, 58); /* Тонкая темная рамка вокруг фото */
+    filter: sepia(0.2); /* Легкий эффект старины под стиль сайта */
+    transition: 0.3s;
+}
+
+.photo-frame {
+    position: relative;
+    width: 320px; /* Ширина фото на компьютере */
+    z-index: 2;
+}
+
+.about-container .text-block {
+    flex: 1;
+}
+
+.photo-frame::after {
+    content: '';
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    width: 100%;
+    height: 100%;
+    border: 1px solid rgb(201, 201, 167); /* Светлая рамка */
+    z-index: -1;
+    transition: 0.4s;
+}
+
+.photo-wrapper:hover .photo-frame::after {
+    top: 10px;
+    left: 10px;
+}
 
 .sidebar {
     width: 280px;
@@ -597,6 +645,27 @@ img {
 
     .divider, .main-header {
         background-attachment: scroll !important; /* Меняем fixed на scroll */
+    }
+
+    .about-container {
+        flex-direction: column; /* Текст и фото в одну колонку */
+        align-items: center;
+        gap: 40px;
+    }
+
+    .photo-wrapper {
+        padding-right: 15px;
+        padding-bottom: 15px;
+        order: 2; /* Фото будет после текста */
+    }
+
+    .photo-frame {
+        width: 260px; /* Чуть меньше на мобильных */
+    }
+
+    .text-block {
+        width: 100%;
+        order: 1;
     }
 }
 

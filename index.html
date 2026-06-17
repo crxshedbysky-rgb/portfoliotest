@@ -388,7 +388,7 @@
     <a href="#" class="back-to-top">↑</a>
 
 <script>
-// 1. Функция для клика — карточка едет в центр при нажатии
+// 1. Функция для клика
 function moveSlider(clickedCard) {
     clickedCard.scrollIntoView({
         behavior: 'smooth',
@@ -397,45 +397,40 @@ function moveSlider(clickedCard) {
     });
 }
 
-// 2. Наблюдатель — следит какая карточка сейчас в центре экрана
+// 2. Наблюдатель
 const observerOptions = {
     root: null,
     rootMargin: '0px',
-    threshold: 0.7
+    threshold: 0.5 // Уменьшили с 0.7 до 0.5 для лучшего срабатывания
 };
 
 const observerCallback = (entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
-            // Убираем active у всех карточек в этом слайдере
             const track = entry.target.closest('.slider-track');
-            track.querySelectorAll('.card').forEach(c => c.classList.remove('active'));
-            
-            // Добавляем active той карточке, что сейчас в центре
-            entry.target.classList.add('active');
+            if (track) {
+                track.querySelectorAll('.card').forEach(c => c.classList.remove('active'));
+                entry.target.classList.add('active');
+            }
         }
     });
 };
 
 const observer = new IntersectionObserver(observerCallback, observerOptions);
 
-// 3. Запуск после полной загрузки страницы (ждем пока загрузятся все картинки)
 window.addEventListener('load', () => {
     const cards = document.querySelectorAll('.card');
-    
-    // Подключаем каждую карточку к наблюдателю
-    cards.forEach(card => {
-        observer.observe(card);
-    });
+    cards.forEach(card => observer.observe(card));
 
-    // При загрузке страницы центрируем первую карточку в каждом слайдере
+    // Центрирование при загрузке
     const sliders = document.querySelectorAll('.slider-container');
     sliders.forEach(slider => {
         const firstCard = slider.querySelector('.card');
         if (firstCard) {
+            // Небольшая задержка для корректного расчета координат
             setTimeout(() => {
-                firstCard.scrollIntoView({ inline: 'center' });
-            }, 100);
+                firstCard.scrollIntoView({ inline: 'center', behavior: 'auto' });
+            }, 300);
         }
     });
 });

@@ -398,12 +398,20 @@
     <a href="#" class="back-to-top">↑</a>
 
 <script>
+
+function scrollManual(btn, direction) {
+    const container = btn.closest('.slider-container');
+    const track = container.querySelector('.slider-track');
+    const cards = track.querySelectorAll('.card');
+    const cardWidth = cards[0].offsetWidth + 30; // Ширина карты + gap
+
+    container.scrollBy({
+        left: direction * cardWidth,
+        behavior: 'smooth'
+    });
+}    
 // 1. Функция для клика
 function moveSlider(clickedCard) {
-    const track = clickedCard.closest('.slider-track');
-    track.querySelectorAll('.card').forEach(c => c.classList.remove('active'));
-    clickedCard.classList.add('active');
-    
     clickedCard.scrollIntoView({
         behavior: 'smooth',
         block: 'nearest',

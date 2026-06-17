@@ -433,7 +433,7 @@ img {
 
 /* ПОЛНАЯ АДАПТАЦИЯ ДЛЯ МОБИЛОК - ОБНОВЛЕННАЯ */
 @media screen and (max-width: 768px) {
-    /* 1. Общие настройки страницы */
+    
     html, body {
         width: 100%;
         margin: 0;
@@ -443,15 +443,10 @@ img {
 
     body {
         flex-direction: column;
-        background-color: rgb(224, 222, 210);
+        background-color: rgb(224, 222, 210); /* Чуть более светлый и чистый оттенок бежевого */
     }
 
-    .content {
-        margin-left: 0 !important;
-        width: 100% !important;
-    }
-
-    /* 2. Навигация (sidebar) */
+    /* 1. НАВИГАЦИЯ */
     .sidebar {
         width: 100% !important;
         height: auto;
@@ -460,44 +455,96 @@ img {
         background-color: rgb(75, 85, 58);
     }
 
+    .logo {
+        width: 80px;
+        margin-bottom: 25px;
+    }
+
     .side-nav {
         display: grid;
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: 1fr 1fr; /* Две колонки */
         gap: 8px;
     }
 
     .side-nav a {
         font-size: 0.8rem;
         padding: 10px 5px;
+        margin: 0;
+        text-align: center;
+        border: 1px solid rgba(201, 201, 167, 0.3); /* Возвращаем рамку */
+        border-radius: 4px;
+        background: rgba(255, 255, 255, 0.03); /* Легкий блеск */
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 
-    /* 3. Слайдер и контейнер (Исправление центрирования) */
+    /* Центрируем кнопку "Я гражданин" */
+    .side-nav a:nth-child(5) {
+        grid-column: 1 / 3; /* Растягиваем на обе колонки */
+        justify-self: center;
+        width: 50%; /* Делаем её компактнее */
+        margin-top: 5px;
+    }
+
+    /* 2. ШАПКА */
+    .content {
+        margin-left: 0 !important;
+        width: 100% !important;
+    }
+
+    .main-header {
+        padding: 60px 25px; /* Увеличили боковые отступы */
+        background-image: 
+            linear-gradient(rgba(58, 66, 45, 0.85), rgba(58, 66, 45, 0.85)), 
+            url('img/main-hero.jpeg');
+    }
+
+    .portfolio-title {
+        font-size: 2rem !important; /* Фиксированный размер вместо vw */
+        letter-spacing: 8px !important; /* Уменьшили разлет букв */
+        text-indent: 8px;
+        margin: 20px 0;
+        line-height: 1.2;
+    }
+
+    .college-name {
+        font-size: 0.75rem;
+        line-height: 1.5;
+        opacity: 0.9;
+    }
+
+    .developer-name {
+        font-size: 0.9rem;
+        margin-top: 20px;
+    }
+
+    /* 3. РАЗДЕЛИТЕЛИ */
+    .divider {
+        height: 400px !important; /* Еще чуть больше для эффектности */
+        background-attachment: scroll;
+        filter: brightness(0.9); /* Сделаем их чуть сочнее */
+    }
+
+    /* 4. СЛАЙДЕРЫ */
     .info-section {
-        padding: 40px 0; /* Убираем боковые отступы у секции, чтобы слайдер был во всю ширину */
+        padding: 40px;
     }
 
-    h2, .category-title {
+    h2 {
+        font-size: 2.2rem;
+        margin-bottom: 30px;
         margin-left: 20px; /* Возвращаем отступы только для заголовков */
         margin-right: 20px;
     }
 
     .slider-container {
-        width: 100%; /* Строго ширина экрана */
+        width: 100vw;
         margin-left: 0; /* Убираем отрицательный маркер */
         overflow-x: auto;
         display: flex;
     }
 
-    .slider-track {
-        /* Расчет: (100vw - 85vw ширина карточки) / 2 = 7.5vw */
-        /* Это заставит первую и последнюю карточку вставать ровно по центру */
-        padding: 0 7.5vw !important; 
-        gap: 15px;
-        display: flex;
-        align-items: flex-start; /* Чтобы карточки разной высоты не растягивались */
-    }
-
-    /* 4. Карточка на мобилке */
     .card {
         width: 85vw !important; /* Карточка занимает 85% ширины экрана */
         height: auto !important; /* Высота подстраивается под контент */
@@ -515,10 +562,12 @@ img {
         transform: scale(1);
     }
 
-    /* 5. Изображение внутри карточки */
-    .card-image {
-        width: 100%;
-        height: auto;
+    /* Исправление длинных заголовков в Работах */
+    .category-title {
+        font-size: 1.1rem;
+        border-left: 2px solid rgb(75, 85, 58);
+        padding-left: 12px;
+        line-height: 1.4;
     }
 
     .card-image img {
@@ -529,24 +578,37 @@ img {
         border-radius: 18px;
     }
 
-    .card-content {
-        padding: 12px 5px 5px 5px;
+    .slider-track {
+        /* Расчет: (100vw - 85vw ширина карточки) / 2 = 7.5vw */
+        /* Это заставит первую и последнюю карточку вставать ровно по центру */
+        padding: 0 7.5vw !important; 
+        gap: 15px;
+        display: flex;
+        align-items: flex-start; /* Чтобы карточки разной высоты не растягивались */
     }
 
-    .card-text {
-        font-size: 0.95rem;
+    .card-image {
+        width: 100%;
+        height: auto;
     }
 
-    /* Скрываем кнопки навигации на мобилках */
-    .nav-btn {
-        display: none !important;
+
+     .nav-btn {
+        display: none; /* На мобилках лучше свайпать пальцем */
     }
 
     .category-block {
         padding: 0 !important;
     }
 
-    /* Шапка */
+    .card-text {
+        font-size: 0.95rem;
+    }
+
+    .card-content {
+        padding: 12px 5px 5px 5px;
+    }
+    
     .portfolio-title {
         font-size: 2.2rem !important;
         letter-spacing: 5px !important;

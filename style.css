@@ -309,7 +309,12 @@ img {
     transition: all 0.6s cubic-bezier(0.25, 1, 0.5, 1);
     scroll-snap-align: center;
     cursor: pointer;
+
+    will-change: transform, opacity; /* Говорим браузеру подготовить видеокарту */
+    backface-visibility: hidden;    /* Убирает мерцание при анимации */
+    transform: translateZ(0);       /* Еще один хак для включения 3D ускорения */
 }
+
 
 
 .card.active {
@@ -588,6 +593,10 @@ img {
     /* РАЗДЕЛИТЕЛИ */
     .divider {
         height: 250px !important;
+    }
+
+    .divider, .main-header {
+        background-attachment: scroll !important; /* Меняем fixed на scroll */
     }
 }
 

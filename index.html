@@ -76,9 +76,9 @@
                     </div>
                 </div>
             </div>
-            <button class="nav-btn prev" onclick="scrollManual(this, -1)">←</button>
-            <button class="nav-btn next" onclick="scrollManual(this, 1)">→</button>
         </div>
+        <button class="nav-btn prev" onclick="scrollManual(this, -1)">←</button>
+        <button class="nav-btn next" onclick="scrollManual(this, 1)">→</button>
     </div>
                 
             </div>
@@ -173,9 +173,9 @@
                 </div>
                 
             </div>
-            <button class="nav-btn prev" onclick="scrollManual(this, -1)">←</button>
-            <button class="nav-btn next" onclick="scrollManual(this, 1)">→</button>
         </div>
+        <button class="nav-btn prev" onclick="scrollManual(this, -1)">←</button>
+        <button class="nav-btn next" onclick="scrollManual(this, 1)">→</button>
     </div>
 
     
@@ -225,9 +225,9 @@
                     </div>
                 </div>
             </div>
-            <button class="nav-btn prev" onclick="scrollManual(this, -1)">←</button>
-            <button class="nav-btn next" onclick="scrollManual(this, 1)">→</button>
         </div>
+        <button class="nav-btn prev" onclick="scrollManual(this, -1)">←</button>
+        <button class="nav-btn next" onclick="scrollManual(this, 1)">→</button>
     </div>
 
     
@@ -308,9 +308,9 @@
                     </div>
                 </div>
             </div>
-            <button class="nav-btn prev" onclick="scrollManual(this, -1)">←</button>
-            <button class="nav-btn next" onclick="scrollManual(this, 1)">→</button>
         </div>
+        <button class="nav-btn prev" onclick="scrollManual(this, -1)">←</button>
+        <button class="nav-btn next" onclick="scrollManual(this, 1)">→</button>
     </div>
 
     
@@ -367,9 +367,9 @@
                     </div>
                 </div>
             </div>
-            <button class="nav-btn prev" onclick="scrollManual(this, -1)">←</button>
-            <button class="nav-btn next" onclick="scrollManual(this, 1)">→</button>
         </div>
+        <button class="nav-btn prev" onclick="scrollManual(this, -1)">←</button>
+        <button class="nav-btn next" onclick="scrollManual(this, 1)">→</button>
     </div>
 
 </section>
@@ -400,13 +400,20 @@
 <script>
 
 function scrollManual(btn, direction) {
-    const container = btn.closest('.slider-container');
+    // Находим контейнер именно в текущем блоке
+    const categoryBlock = btn.closest('.category-block');
+    const container = categoryBlock.querySelector('.slider-container');
+    
+    // Определяем ширину карточки + зазор
     const card = container.querySelector('.card');
-    const step = card.offsetWidth + 30; 
-    container.scrollBy({ left: direction * step, behavior: 'smooth' });
+    const step = card.offsetWidth + 40; 
+    
+    container.scrollBy({ 
+        left: direction * step, 
+        behavior: 'smooth' 
+    });
 }
 
-// 2. Клик по карточке
 function moveSlider(clickedCard) {
     clickedCard.scrollIntoView({
         behavior: 'smooth',
@@ -415,10 +422,9 @@ function moveSlider(clickedCard) {
     });
 }
 
-// 3. Наблюдатель (активный класс по центру)
 const observerOptions = {
     root: null,
-    rootMargin: '0px -45% 0px -45%', // Захват строго в центре
+    rootMargin: '0px -45% 0px -45%', 
     threshold: 0
 };
 
@@ -434,10 +440,8 @@ const observerCallback = (entries) => {
 
 const observer = new IntersectionObserver(observerCallback, observerOptions);
 
-// Инициализация
 window.addEventListener('load', () => {
     document.querySelectorAll('.card').forEach(card => observer.observe(card));
-    // УБРАЛИ авто-скролл, чтобы страница не прыгала вниз!
 });
 </script>
 

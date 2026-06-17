@@ -376,17 +376,40 @@ img {
     border-left: 3px solid rgb(75, 85, 58);
 }
 
-/* ПОЛНАЯ АДАПТАЦИЯ ДЛЯ МОБИЛОК */
 @media screen and (max-width: 768px) {
+    
+    /* 1. Убираем лишние отступы и фиксируем ширину */
+    html, body {
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden; /* Запрещаем боковой скролл всей страницы */
+    }
+
     body {
         flex-direction: column;
     }
 
+    /* 2. Исправляем контент, чтобы не было полосы справа */
     .sidebar {
-        width: 100%;
+        width: 100% !important;
         height: auto;
         position: relative;
         padding: 20px 10px;
+        left: 0;
+    }
+
+    .content {
+        margin-left: 0 !important; /* Убираем отступ для десктопного меню */
+        width: 100% !important;    /* Растягиваем на всю ширину */
+        min-width: 100%;
+    }
+
+    .main-header {
+        width: 100% !important;
+        margin: 0;
+        padding: 80px 20px;
+        box-sizing: border-box;
     }
 
     .side-nav {
@@ -398,72 +421,71 @@ img {
     .side-nav a {
         font-size: 0.8rem;
         padding: 10px 5px;
-        margin-bottom: 0;
+        margin: 0;
+        text-align: center;
     }
 
-    .content {
+    /* 3. УВЕЛИЧИВАЕМ КАРТИНКИ-РАЗДЕЛИТЕЛИ */
+    .divider {
+        height: 350px !important; /* Увеличил высоту как вы просили */
         margin-left: 0;
+        margin-right: 0;
+        background-attachment: scroll; /* Обязательно для мобилок, чтобы не глючило */
         width: 100%;
+        background-position: center;
     }
 
-    .portfolio-title {
-        font-size: 12vw;
-        letter-spacing: 5px;
+    /* 4. СЛАЙДЕРЫ */
+    .info-section {
+        padding: 40px 15px;
+        width: 100%;
+        box-sizing: border-box;
     }
 
-    /* ИСПРАВЛЕНИЕ СЛАЙДЕРА */
     .slider-container {
-        padding: 20px 0;
-        overflow-x: auto !important; /* Обязательно auto или scroll для работы свайпа */
+        width: 100vw;         /* Слайдер на всю ширину экрана */
+        margin-left: -15px;   /* Компенсируем отступы секции */
+        overflow-x: auto !important;
         display: block;
-        -webkit-overflow-scrolling: touch; /* Плавный скролл на iPhone */
+        -webkit-overflow-scrolling: touch;
+        scroll-snap-type: x mandatory;
     }
 
     .slider-track {
-        padding: 0 20px; /* Отступы по бокам */
+        padding: 0 20px;
         display: flex;
-        align-items: flex-start; /* Чтобы карточки разной высоты не растягивались */
+        align-items: flex-start;
     }
 
     .card {
-        width: 85vw; /* Карточка занимает 85% ширины экрана */
-        height: auto; /* Высота подстраивается под контент */
+        width: 85vw;
+        height: auto !important;
         margin: 0 10px;
         flex-shrink: 0;
-        opacity: 1; /* На мобилках лучше оставить видимыми все */
-        transform: scale(1);
-        padding: 10px;
-    }
-
-    .card.active {
-        transform: scale(1); /* Убираем сильное увеличение, чтобы не мылило */
-    }
-
-    .card-image {
-        width: 100%;
-        height: auto;
-        min-height: 200px; /* Минимальная высота для вертикальных фото */
+        opacity: 1 !important;
+        transform: scale(1) !important;
+        scroll-snap-align: center;
     }
 
     .card-image img {
         width: 100%;
         height: auto;
-        max-height: 70vh; /* Чтобы длинные фото не уходили за экран */
-        object-fit: contain;
+        display: block;
     }
 
-    .card-text {
-        display: block; /* На мобилках текст лучше показывать всегда */
-        font-size: 0.9rem;
-        margin-top: 10px;
+    /* 5. Исправление длинных заголовков */
+    .portfolio-title {
+        font-size: 10vw;
+        word-wrap: break-word;
     }
 
-    .card-lines {
-        display: none; /* Убираем лишние линии на мобилках */
+    h2 {
+        font-size: 2rem;
+        word-wrap: break-word;
     }
 
-    .divider {
-        height: 150px;
-        background-attachment: scroll;
+    .category-title {
+        font-size: 1.2rem;
+        line-height: 1.3;
     }
 }

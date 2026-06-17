@@ -401,16 +401,12 @@
 
 function scrollManual(btn, direction) {
     const container = btn.closest('.slider-container');
-    const track = container.querySelector('.slider-track');
-    const cards = track.querySelectorAll('.card');
-    const cardWidth = cards[0].offsetWidth + 30; // Ширина карты + gap
+    const card = container.querySelector('.card');
+    const step = card.offsetWidth + 30; 
+    container.scrollBy({ left: direction * step, behavior: 'smooth' });
+}
 
-    container.scrollBy({
-        left: direction * cardWidth,
-        behavior: 'smooth'
-    });
-}    
-// 1. Функция для клика
+// 2. Клик по карточке
 function moveSlider(clickedCard) {
     clickedCard.scrollIntoView({
         behavior: 'smooth',
@@ -419,12 +415,10 @@ function moveSlider(clickedCard) {
     });
 }
 
-// 2. Наблюдатель
+// 3. Наблюдатель (активный класс по центру)
 const observerOptions = {
     root: null,
-    // rootMargin: 'верх право низ лево' 
-    // Создаем узкую полоску в 1% ширины по центру экрана
-    rootMargin: '0px -49% 0px -49%', 
+    rootMargin: '0px -45% 0px -45%', // Захват строго в центре
     threshold: 0
 };
 
@@ -432,30 +426,18 @@ const observerCallback = (entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
             const track = entry.target.closest('.slider-track');
-            if (track) {
-                track.querySelectorAll('.card').forEach(c => c.classList.remove('active'));
-                entry.target.classList.add('active');
-            }
+            track.querySelectorAll('.card').forEach(c => c.classList.remove('active'));
+            entry.target.classList.add('active');
         }
     });
 };
 
 const observer = new IntersectionObserver(observerCallback, observerOptions);
 
+// Инициализация
 window.addEventListener('load', () => {
-    const cards = document.querySelectorAll('.card');
-    cards.forEach(card => observer.observe(card));
-
-    // Центрирование при загрузке (плавный запуск)
-    setTimeout(() => {
-        const sliders = document.querySelectorAll('.slider-container');
-        sliders.forEach(slider => {
-            const firstCard = slider.querySelector('.card');
-            if (firstCard) {
-                firstCard.scrollIntoView({ inline: 'center', behavior: 'auto' });
-            }
-        });
-    }, 100);
+    document.querySelectorAll('.card').forEach(card => observer.observe(card));
+    // УБРАЛИ авто-скролл, чтобы страница не прыгала вниз!
 });
 </script>
 

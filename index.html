@@ -390,6 +390,10 @@
 <script>
 // 1. Функция для клика
 function moveSlider(clickedCard) {
+    const track = clickedCard.closest('.slider-track');
+    track.querySelectorAll('.card').forEach(c => c.classList.remove('active'));
+    clickedCard.classList.add('active');
+    
     clickedCard.scrollIntoView({
         behavior: 'smooth',
         block: 'nearest',
@@ -400,8 +404,10 @@ function moveSlider(clickedCard) {
 // 2. Наблюдатель
 const observerOptions = {
     root: null,
-    rootMargin: '0px',
-    threshold: 0.2 // Уменьшили с 0.7 до 0.5 для лучшего срабатывания
+    // rootMargin: 'верх право низ лево' 
+    // Создаем узкую полоску в 1% ширины по центру экрана
+    rootMargin: '0px -49% 0px -49%', 
+    threshold: 0
 };
 
 const observerCallback = (entries) => {
@@ -422,17 +428,16 @@ window.addEventListener('load', () => {
     const cards = document.querySelectorAll('.card');
     cards.forEach(card => observer.observe(card));
 
-    // Центрирование при загрузке
-    const sliders = document.querySelectorAll('.slider-container');
-    sliders.forEach(slider => {
-        const firstCard = slider.querySelector('.card');
-        if (firstCard) {
-            // Небольшая задержка для корректного расчета координат
-            setTimeout(() => {
+    // Центрирование при загрузке (плавный запуск)
+    setTimeout(() => {
+        const sliders = document.querySelectorAll('.slider-container');
+        sliders.forEach(slider => {
+            const firstCard = slider.querySelector('.card');
+            if (firstCard) {
                 firstCard.scrollIntoView({ inline: 'center', behavior: 'auto' });
-            }, 300);
-        }
-    });
+            }
+        });
+    }, 100);
 });
 </script>
 

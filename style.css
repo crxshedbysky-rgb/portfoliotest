@@ -1,0 +1,510 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Raleway', sans-serif;
+    font-weight: 300;
+    line-height: 1.8;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    display: flex; 
+    color: rgb(75, 85, 58); 
+    background-color: rgb(224, 222, 210); 
+}
+
+
+.sidebar {
+    width: 280px;
+    height: 100vh;
+    position: fixed;
+    left: 0;
+    top: 0;
+    background-color: rgb(75, 85, 58); 
+    padding: 40px 30px;
+    border-right: 1px solid rgba(201, 201, 167, 0.2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 100;
+}
+
+.logo {
+    width: 100px;
+    height: auto;
+    margin-bottom: 40px;
+    border-radius: 0; 
+    object-fit: contain;
+    filter: grayscale(1) brightness(1.2); 
+    mix-blend-mode: screen; 
+    opacity: 0.9;
+    transition: 0.3s;
+}
+
+.logo:hover {
+    filter: grayscale(0); 
+    opacity: 1;
+}
+
+.side-nav {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.side-nav a {
+    transition: all 0.4s ease; 
+    opacity: 0.8;
+    position: relative;
+    padding-left: 0;
+    color: rgb(201, 201, 167);
+    text-decoration: none;
+    padding: 15px 10px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    transition: 0.3s;
+    font-weight: 500;
+    font-size: 1.1rem;
+}
+
+.side-nav a::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 10px;
+    width: 0;
+    height: 1px;
+    background-color: rgb(201, 201, 167);
+    transition: 0.4s;
+}
+
+.side-nav a:hover::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 10px;
+    height: 1px;
+    background: rgb(201, 201, 167);
+}
+
+.side-nav a:hover {
+    opacity: 1;
+    background-color: rgba(201, 201, 167, 0.1);
+    color: #fff;
+    padding-left: 10px; 
+}
+
+
+.content {
+    margin-left: 280px; 
+    padding: 0;
+    width: calc(100% - 280px);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(224, 222, 210);
+}
+
+
+.main-header {
+   
+    background-image: 
+        linear-gradient(rgba(75, 85, 58, 0.7), rgba(75, 85, 58, 0.7)), 
+        url('img/main-hero.jpeg'); 
+    
+    background-size: cover;         
+    background-position: center;    
+    background-attachment: scroll;  
+    
+    
+    padding: 150px 20px; 
+    
+    margin: 0;
+    
+    border-bottom: 2px solid rgb(201, 201, 167);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    transition: 0.3s;
+    background-color: rgb(75, 85, 58);
+    color: rgb(201, 201, 167);
+
+    text-align: center;
+    align-items: center;
+}
+
+.college-name, .developer-name {
+    color: rgb(201, 201, 167);
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-weight: 300;
+}
+
+.portfolio-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 6vw; 
+    color: rgb(201, 201, 167);
+    margin: 20px 0;
+    font-weight: 700;
+    line-height: 1.1;
+    text-shadow: 2px 4px 10px rgba(0,0,0,0.5); 
+    letter-spacing: 15px; 
+    text-indent: 15px;    
+    font-weight: 700;     
+    text-transform: uppercase;
+}
+
+.developer-name {
+    font-size: 1.2rem;
+}
+
+
+.info-section {
+    padding: 100px 10%;
+    background-color: rgb(224, 222, 210);
+    color: rgb(75, 85, 58); 
+    width: 100%;
+    box-sizing: border-box;
+}
+
+h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3.5rem;
+    margin-bottom: 40px;
+    text-transform: uppercase;
+    border-bottom: 1px solid rgba(75, 85, 58, 0.3);
+    display: block;
+}
+
+.text-block p {
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+    line-height: 1.8;
+    max-width: 800px;
+}
+
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    border: 1px solid rgba(201, 201, 167, 0.3);
+    padding: 5px;
+    margin-top: 15px;
+}
+
+.cloud-link {
+    display: inline-block;
+    margin-top: 20px;
+    color: rgb(201, 201, 167);
+    border: 1px solid rgb(201, 201, 167);
+    padding: 10px 20px;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.cloud-link:hover {
+    background-color: rgb(201, 201, 167);
+    color: rgb(75, 85, 58);
+}
+
+.divider {
+    height: 400px; 
+    margin-left: -80px;
+    margin-right: -80px;
+    background-attachment: fixed; 
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    box-shadow: inset 0 0 50px rgba(0,0,0,0.5); 
+}
+
+.div-1 { background-image: url('img/main-hero.jpeg'); }
+.div-2 { background-image: url('img/main-hero.jpeg'); }
+.div-3 { background-image: url('img/main-hero.jpeg'); }
+.div-4 { background-image: url('img/main-hero.jpeg'); }
+
+.back-to-top {
+    position: fixed;       
+    bottom: 30px;           
+    right: 30px;            
+    width: 45px;
+    height: 45px;
+    background-color: rgba(75, 85, 58, 0.1); 
+    color: rgb(75, 85, 58);                
+    border: 1px solid rgb(75, 85, 58);      
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    border-radius: 50%;    
+    transition: 0.3s;
+    z-index: 1000;          
+    font-weight: 300;
+}
+
+.back-to-top:hover {
+    background-color: rgb(75, 85, 58);      
+    color: rgb(201, 201, 167);                    
+}
+
+.slider-container {
+    width: 100%;
+    padding: 60px 0;
+    position: relative;
+    display: block; 
+    overflow-x: auto; 
+    -webkit-overflow-scrolling: touch;
+     -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+.slider-track {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+    will-change: transform;
+    padding-left: 0; 
+}
+
+.card {
+    flex-shrink: 0; 
+    width: auto;
+    height: 600px;
+    background-color: rgb(75, 85, 58);
+    color: rgb(201, 201, 167);
+    padding: 10px 15px 15px 15px;
+    border-radius: 25px;
+    transition: all 0.5s ease;
+    cursor: pointer;
+    opacity: 0.3; 
+    transform: scale(0.8);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    display: flex;
+    flex-direction: column;
+}
+
+.card.active {
+    opacity: 1;
+    transform: scale(1.05);
+    z-index: 10;
+}
+
+.card-image {
+    width: auto;
+    height: 550px;
+    min-height: 150px;
+    
+    border: none !important; 
+    
+    
+    padding: 15px 15px 15px 15px; 
+    box-sizing: border-box;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+}
+
+.card-image img {
+    width: auto;
+    height: 100%;
+    object-fit: contain;
+    border-radius: 12px; 
+    margin-top: 0;
+   
+    border: 1px solid rgba(201, 201, 167, 0.4); 
+    
+    display: block;
+}
+
+.card-image::before, .card-image::after {
+    display: none !important;
+    content: none !important;
+}
+
+.card-content {
+    margin-top: 20px;
+    padding: 0 10px;
+    text-align: center;
+}
+
+.card-text {
+    display: none;
+    font-size: 1rem;
+    font-weight: 300;
+}
+
+.card.active .card-text {
+    display: block;
+}
+
+.card-lines {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    align-items: center;
+    margin-top: 15px;
+}
+
+.card.active .card-lines {
+    display: none;
+}
+
+.card-lines span {
+    width: 50px;
+    height: 1px;
+    background: rgb(201, 201, 167);
+    opacity: 0.5;
+}
+
+.category-block {
+    margin-bottom: 100px;
+    width: 100%;
+    overflow: hidden;
+}
+
+.category-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2rem;
+    color: rgb(75, 85, 58);
+    margin-bottom: 30px;
+    padding-left: 20px;
+    border-left: 3px solid rgb(75, 85, 58);
+}
+
+/* МЕДИА-ЗАПРОС ДЛЯ МОБИЛЬНЫХ УСТРОЙСТВ (до 768px) */
+@media screen and (max-width: 768px) {
+    
+    /* 1. Превращаем боковую панель в верхнюю */
+    body {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative; /* Убираем фиксацию слева */
+        padding: 20px;
+        border-right: none;
+        border-bottom: 1px solid rgba(201, 201, 167, 0.2);
+    }
+
+    .logo {
+        width: 60px;
+        margin-bottom: 20px;
+    }
+
+    .side-nav {
+        flex-direction: row; /* Ссылки в ряд */
+        flex-wrap: wrap;     /* Если не влезают — переносятся */
+        justify-content: center;
+        gap: 10px;
+    }
+
+    .side-nav a {
+        font-size: 0.9rem;
+        padding: 8px 12px;
+        margin-bottom: 0;
+        background-color: rgba(201, 201, 167, 0.1);
+    }
+
+    /* 2. Контент теперь занимает всю ширину */
+    .content {
+        margin-left: 0;
+        width: 100%;
+    }
+
+    /* 3. Адаптация заголовков */
+    .main-header {
+        padding: 80px 20px;
+    }
+
+    .portfolio-title {
+        font-size: 12vw; /* Увеличиваем шрифт для узких экранов */
+        letter-spacing: 5px;
+        text-indent: 5px;
+    }
+
+    .college-name {
+        font-size: 0.8rem;
+        letter-spacing: 1px;
+    }
+
+    h2 {
+        font-size: 2.5rem;
+    }
+
+    .info-section {
+        padding: 50px 5%;
+    }
+
+    /* 4. Адаптация слайдера и карточек */
+    .card {
+        height: 450px; /* Уменьшаем высоту карточки */
+        width: 280px;  /* Фиксируем ширину для мобилок */
+    }
+
+    .card-image {
+        height: 380px;
+    }
+
+    .slider-track {
+        gap: 20px;
+    }
+
+    /* 5. Эффект параллакса (divider) на мобилках часто тормозит */
+    .divider {
+        height: 200px;
+        background-attachment: scroll; /* Отключаем fixed для плавности */
+    }
+
+    /* 6. Кнопка "Наверх" чуть меньше */
+    .back-to-top {
+        width: 40px;
+        height: 40px;
+        bottom: 20px;
+        right: 20px;
+    }
+}
+
+/* Дополнительно для совсем маленьких экранов (до 480px) */
+@media screen and (max-width: 480px) {
+    .side-nav a {
+        font-size: 0.8rem;
+        padding: 5px 8px;
+    }
+    
+    .portfolio-title {
+        font-size: 14vw;
+    }
+
+    .card {
+        height: 400px;
+        width: 250px;
+    }
+
+    .card-image {
+        height: 320px;
+    }
+}
+
+.slider-container::-webkit-scrollbar {
+    display: none;
+}

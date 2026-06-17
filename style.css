@@ -267,11 +267,12 @@ img {
 }
 
 .slider-container {
+    position: relative; /* Чтобы стрелки были внутри */
     width: 100%;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
     scroll-behavior: smooth;
-    padding: 60px 0;
+    padding: 40px 0;
     scrollbar-width: none;
     -ms-overflow-style: none;
 }
@@ -279,41 +280,39 @@ img {
 
 .slider-track {
     display: flex;
-    padding: 0 25vw; /* Увеличили отступы, чтобы центр всегда был свободен для одной карты */
+    padding: 0 35vw; /* Увеличили боковые поля, чтобы соседние карты были видны лишь краем */
     width: max-content;
     align-items: center;
-    gap: 40px; /* Расстояние между карточками */
+    gap: 30px;
 }
 
 .card {
     flex-shrink: 0;
-    /* На десктопе карточка занимает 70% высоты экрана */
-    height: 70vh; 
+    height: 55vh; /* Уменьшили высоту с 70 до 55 */
     width: auto;
-    min-width: 400px; /* Чтобы горизонтальные фото не были слишком узкими */
-    max-width: 80vw;
+    min-width: 320px;
+    max-width: 70vw;
     
-    background-color: rgb(75, 85, 58);
-    border-radius: 25px;
-    padding: 20px;
+    background-color: rgb(75, 85, 58); /* Цвет рамки */
+    border-radius: 15px;
+    padding: 25px; /* Отступ от края карточки до изображения */
+    
     display: flex;
     flex-direction: column;
-    justify-content: center; /* Центрируем контент внутри */
-    
-    opacity: 0.2;
-    transform: scale(0.8);
+    opacity: 0.3;
+    transform: scale(0.85);
     transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
     
     scroll-snap-align: center;
     scroll-snap-stop: always;
     cursor: pointer;
-    position: relative;
 }
+
 
 .card.active {
     opacity: 1;
     transform: scale(1);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+    box-shadow: 0 15px 45px rgba(0,0,0,0.4);
 }
 
 .card-image {
@@ -322,17 +321,17 @@ img {
     display: flex;
     align-items: center;
     justify-content: center;
-    overflow: hidden;
+    background: rgba(0,0,0,0.05); /* Легкий фон внутри рамки */
+    border-radius: 8px;
+    padding: 10px; /* Еще один внутренний отступ для эффекта вложенности */
 }
 
 .card-image img {
     max-width: 100%;
     max-height: 100%;
-    width: auto;
-    height: auto;
-    object-fit: contain; /* Картинка не обрезается и сохраняет пропорции */
-    border-radius: 15px;
-    padding: 0;
+    object-fit: contain;
+    border: 1px solid rgba(201, 201, 167, 0.2); /* Тонкая каемка самого фото */
+    border-radius: 4px;
 }
 
 .card-image::before, .card-image::after {
@@ -390,6 +389,34 @@ img {
     padding-left: 20px;
     border-left: 3px solid rgb(75, 85, 58);
 }
+
+.nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 50px;
+    height: 50px;
+    background: rgb(75, 85, 58);
+    color: rgb(201, 201, 167);
+    border: 1px solid rgb(201, 201, 167);
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 10;
+    font-size: 20px;
+    transition: 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.nav-btn.prev { left: 20px; }
+.nav-btn.next { right: 20px; }
+
+.nav-btn:hover {
+    background: rgb(201, 201, 167);
+    color: rgb(75, 85, 58);
+}
+
 
 /* ПОЛНАЯ АДАПТАЦИЯ ДЛЯ МОБИЛОК - ОБНОВЛЕННАЯ */
 @media screen and (max-width: 768px) {
@@ -503,10 +530,10 @@ img {
     }
 
     .card {
-        height: auto; /* На мобилках высота подстраивается под ширину */
-        width: 88vw;
-        min-width: auto;
-        padding: 15px;
+        height: auto;
+        width: 80vw;
+        max-width: 85vw;
+        padding: 12px;
     }
 
     /* Исправление длинных заголовков в Работах */
@@ -523,11 +550,14 @@ img {
     }
 
     .slider-track {
-        padding: 0 6vw; /* Меньше отступы по бокам */
+        padding: 0 10vw;
         gap: 15px;
     }
 
     .card-image {
         height: auto;
+        padding: 5px;
     }
+
+    .nav-btn { display: none; }
 }

@@ -4,6 +4,11 @@
     box-sizing: border-box;
 }
 
+html, body {
+    max-width: 100%;
+    overflow-x: hidden; /* Убирает горизонтальный дергающийся скролл */
+}
+
 html {
     scroll-behavior: smooth;
 }
@@ -104,13 +109,9 @@ body {
 
 
 .content {
-    margin-left: 280px; 
-    padding: 0;
+    margin-left: 280px;
     width: calc(100% - 280px);
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    background-color: rgb(224, 222, 210);
+    overflow-x: hidden; /* Фикс белой полосы справа */
 }
 
 
@@ -267,11 +268,10 @@ img {
 }
 
 .slider-container {
-    position: relative; /* Чтобы стрелки были внутри */
-    width: 100%;
+    position: relative;
+    width: 100%; /* Вместо 100vw */
     overflow-x: auto;
     scroll-snap-type: x mandatory;
-    scroll-behavior: smooth;
     padding: 40px 0;
     scrollbar-width: none;
     -ms-overflow-style: none;
@@ -280,58 +280,53 @@ img {
 
 .slider-track {
     display: flex;
-    padding: 0 35vw; /* Увеличили боковые поля, чтобы соседние карты были видны лишь краем */
-    width: max-content;
-    align-items: center;
+    padding: 0 30vw; /* Центрирование */
     gap: 30px;
 }
 
 .card {
     flex-shrink: 0;
-    height: 55vh; /* Уменьшили высоту с 70 до 55 */
+    height: 60vh; /* Оптимальная высота */
     width: auto;
-    min-width: 320px;
-    max-width: 70vw;
+    min-width: 350px;
+    background-color: rgb(75, 85, 58); /* Твой темный цвет */
     
-    background-color: rgb(75, 85, 58); /* Цвет рамки */
-    border-radius: 15px;
-    padding: 25px; /* Отступ от края карточки до изображения */
+    /* ТОНКАЯ КРЕМОВАЯ РАМКА */
+    border: 1px solid rgb(201, 201, 167); 
+    border-radius: 20px;
     
+    padding: 20px;
     display: flex;
-    flex-direction: column;
-    opacity: 0.3;
-    transform: scale(0.85);
-    transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+    flex-direction: column; /* Элементы друг под другом */
+    align-items: center;
     
+    opacity: 0.3;
+    transform: scale(0.9);
+    transition: all 0.6s ease;
     scroll-snap-align: center;
-    scroll-snap-stop: always;
-    cursor: pointer;
 }
 
 
 .card.active {
     opacity: 1;
     transform: scale(1);
-    box-shadow: 0 15px 45px rgba(0,0,0,0.4);
 }
 
 .card-image {
     width: 100%;
-    height: 100%;
+    flex: 1; /* Занимает всё свободное место сверху */
     display: flex;
     align-items: center;
     justify-content: center;
-    background: rgba(0,0,0,0.05); /* Легкий фон внутри рамки */
-    border-radius: 8px;
-    padding: 10px; /* Еще один внутренний отступ для эффекта вложенности */
+    overflow: hidden;
+    margin-bottom: 15px; /* Отступ до текста */
 }
 
 .card-image img {
     max-width: 100%;
     max-height: 100%;
     object-fit: contain;
-    border: 1px solid rgba(201, 201, 167, 0.2); /* Тонкая каемка самого фото */
-    border-radius: 4px;
+    border-radius: 12px; /* СКРУГЛЕНИЕ ФОТО */
 }
 
 .card-image::before, .card-image::after {
@@ -340,25 +335,23 @@ img {
 }
 
 .card-content {
-    margin-top: 15px;
-    padding: 0 10px;
+    width: 100%;
     text-align: center;
-    min-height: 40px; /* Запас под текст */
+    padding: 5px 0 10px 0;
 }
 
 .card-text {
-    display: none;
+    display: block !important; /* Всегда виден, раз он внутри */
+    color: rgb(201, 201, 167);
     font-size: 1rem;
-    font-weight: 300;
+    font-weight: 400;
 }
-
 .card.active .card-text {
     display: block;
 }
 
 .card-lines {
-    display: flex;
-    flex-direction: column;
+    display: none;
     gap: 8px;
     align-items: center;
     margin-top: 15px;
@@ -394,28 +387,21 @@ img {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    width: 50px;
-    height: 50px;
-    background: rgb(75, 85, 58);
+    background: rgba(75, 85, 58, 0.8);
     color: rgb(201, 201, 167);
     border: 1px solid rgb(201, 201, 167);
+    width: 44px;
+    height: 44px;
     border-radius: 50%;
     cursor: pointer;
-    z-index: 10;
-    font-size: 20px;
+    z-index: 5;
     transition: 0.3s;
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }
 
 .nav-btn.prev { left: 20px; }
 .nav-btn.next { right: 20px; }
 
-.nav-btn:hover {
-    background: rgb(201, 201, 167);
-    color: rgb(75, 85, 58);
-}
+.nav-btn:hover { background: rgb(201, 201, 167); color: rgb(75, 85, 58); }
 
 
 /* ПОЛНАЯ АДАПТАЦИЯ ДЛЯ МОБИЛОК - ОБНОВЛЕННАЯ */
@@ -529,11 +515,11 @@ img {
         margin-left: -20px; /* Чтобы слайдер касался краев экрана при прокрутке */
     }
 
-    .card {
-        height: auto;
-        width: 80vw;
-        max-width: 85vw;
-        padding: 12px;
+    .card { 
+        height: auto; 
+        min-height: 400px; 
+        width: 80vw; 
+        min-width: 280px; 
     }
 
     /* Исправление длинных заголовков в Работах */
@@ -551,7 +537,6 @@ img {
 
     .slider-track {
         padding: 0 10vw;
-        gap: 15px;
     }
 
     .card-image {

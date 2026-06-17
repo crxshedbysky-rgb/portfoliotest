@@ -21,7 +21,7 @@ body {
     padding: 0;
     overflow-x: hidden;
     display: flex; 
-    color: rgb(75, 85, 58); 
+    color: rgb(85, 97, 66); 
     background-color: rgb(224, 222, 210); 
 }
 
@@ -80,7 +80,7 @@ body {
     position: fixed;
     left: 0;
     top: 0;
-    background-color: rgb(54, 61, 42); 
+    background-color: rgb(57, 63, 42); 
     padding: 40px 30px;
     border-right: 1px solid rgba(201, 201, 167, 0.2);
     display: flex;
@@ -271,19 +271,33 @@ img {
 
 .divider {
     height: 400px; 
+    position: relative;
     margin-left: -80px;
     margin-right: -80px;
-    background-attachment: fixed; 
-    background-position: center;
     background-repeat: no-repeat;
-    background-size: cover;
     box-shadow: inset 0 0 50px rgba(0,0,0,0.5); 
+    background-image: 
+        linear-gradient(rgba(75, 85, 58, 0.7), rgba(75, 85, 58, 0.7)), 
+        url('img/main-hero.jpeg'); 
+    background-size: cover;         
+    background-position: center;    
+    background-attachment: fixed;   
 }
 
-.div-1 { background-image: url('img/main-hero.jpeg'); }
-.div-2 { background-image: url('img/main-hero.jpeg'); }
-.div-3 { background-image: url('img/main-hero.jpeg'); }
-.div-4 { background-image: url('img/main-hero.jpeg'); }
+
+
+.div-1 { background-image: 
+        linear-gradient(rgba(75, 85, 58, 0.7), rgba(75, 85, 58, 0.7)), 
+        url('img/main-hero.jpeg'); }
+.div-2 { background-image: 
+        linear-gradient(rgba(75, 85, 58, 0.7), rgba(75, 85, 58, 0.7)), 
+        url('img/main-hero.jpeg'); }
+.div-3 { background-image: 
+        linear-gradient(rgba(75, 85, 58, 0.7), rgba(75, 85, 58, 0.7)), 
+        url('img/main-hero.jpeg'); }
+.div-4 { background-image: 
+        linear-gradient(rgba(75, 85, 58, 0.7), rgba(75, 85, 58, 0.7)), 
+        url('img/main-hero.jpeg'); }
 
 .back-to-top {
     position: fixed;       

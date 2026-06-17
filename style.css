@@ -268,55 +268,54 @@ img {
 
 .slider-container {
     width: 100%;
-    overflow-x: auto; /* Включаем нативный скролл */
-    scroll-snap-type: x mandatory; /* Включаем "магнит" для карточек */
+    overflow-x: auto;
+    scroll-snap-type: x mandatory; /* Магнит для скролла */
     scroll-behavior: smooth;
-    padding: 60px 0;
-    /* Скрываем полосу прокрутки */
-    scrollbar-width: none; /* Firefox */
-    -ms-overflow-style: none; /* IE/Edge */
+    padding: 40px 0; /* Уменьшили отступы, чтобы не было гигантских дыр */
+    scrollbar-width: none;
+    -ms-overflow-style: none;
 }
 
 .slider-track {
     display: flex;
-    padding: 0 10vw; /* Отступы по бокам, чтобы первая и последняя карточки могли встать по центру */
+    padding: 0 10vw;
     width: max-content;
-    align-items: center;
+    align-items: center; /* Центрируем картинки по вертикали, если они разной высоты */
 }
 
 .card {
     flex-shrink: 0;
-    height: 500px; /* Одинаковая высота */
-    width: auto;   /* Ширина подстраивается под фото */
-    margin: 0 15px;
+    width: 450px; /* Фиксированная ширина для десктопа */
+    height: auto;  /* ВЫСОТА ТЕПЕРЬ АВТОМАТИЧЕСКАЯ */
+    margin: 0 20px;
     background-color: rgb(75, 85, 58);
     border-radius: 20px;
     padding: 15px;
     display: flex;
     flex-direction: column;
-    opacity: 0.3;
-    transform: scale(0.85);
-    transition: all 0.4s ease;
-    scroll-snap-align: center; /* Карточка всегда примагничивается к центру экрана */
+    opacity: 0.4;
+    transform: scale(0.9);
+    transition: all 0.6s cubic-bezier(0.25, 1, 0.5, 1); /* Делаем анимацию плавнее и "тяжелее" */
+    scroll-snap-align: center;
+    scroll-snap-stop: always; /* ЗАМЕДЛЯЕТ СКРОЛЛ: не дает прокрутить сразу много карточек */
     cursor: pointer;
 }
 
 .card.active {
     opacity: 1;
-    transform: scale(1.05);
+    transform: scale(1.02);
 }
 
 .card-image {
-    height: 100%;
-    width: auto;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    width: 100%;
+    height: auto; /* Убираем фикс высоту здесь */
+    display: block;
 }
 
 .card-image img {
-    height: 100%;
-    width: auto;
+    width: 100%;    /* Картинка растягивается на всю ширину карточки */
+    height: auto;   /* Высота подстраивается автоматически по пропорциям */
+    display: block;
     object-fit: contain;
     border-radius: 12px;
 }
@@ -327,9 +326,10 @@ img {
 }
 
 .card-content {
-    margin-top: 20px;
+    margin-top: 15px;
     padding: 0 10px;
     text-align: center;
+    min-height: 40px; /* Запас под текст */
 }
 
 .card-text {
@@ -484,13 +484,15 @@ img {
 
     .slider-container {
         width: 100vw;
-        margin-left: -20px;
+        margin-left: -20px; /* Чтобы слайдер касался краев экрана при прокрутке */
     }
 
     .card {
-        width: 82vw;
-        margin: 0 8px;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.15); /* Добавим глубины */
+        width: 88vw; /* Карточка занимает 88% ширины экрана */
+        margin: 0 10px;
+        padding: 10px; /* Чуть меньше внутренние отступы */
+        scroll-snap-stop: always; /* Обязательная остановка на каждой карточке */
+        transition: all 0.5s ease;
     }
 
     /* Исправление длинных заголовков в Работах */
@@ -499,5 +501,10 @@ img {
         border-left: 2px solid rgb(75, 85, 58);
         padding-left: 12px;
         line-height: 1.4;
+    }
+
+    .card-image img {
+        width: 100%;
+        height: auto; /* Теперь горизонтальные фото будут во всю ширину и со своей высотой */
     }
 }

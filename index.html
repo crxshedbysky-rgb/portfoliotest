@@ -400,13 +400,12 @@
 <script>
 
 function scrollManual(btn, direction) {
-    // Находим контейнер именно в текущем блоке
     const categoryBlock = btn.closest('.category-block');
     const container = categoryBlock.querySelector('.slider-container');
     
-    // Определяем ширину карточки + зазор
-    const card = container.querySelector('.card');
-    const step = card.offsetWidth + 40; 
+    // Вместо фиксированного шага просто скроллим на 400 пикселей. 
+    // Браузер сам "дотянет" (snap) до центра ближайшей карточки.
+    const step = 400; 
     
     container.scrollBy({ 
         left: direction * step, 

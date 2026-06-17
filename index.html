@@ -48,7 +48,7 @@
 
        
         <section id="achievements" class="info-section">
-            <h2>Достижения🏅</h2>
+            <h2>Достижения</h2>
     <div class="category-block">
         <div class="slider-container">
             <div class="slider-track">
@@ -387,51 +387,58 @@
 
     <a href="#" class="back-to-top">↑</a>
 
-    <script>
+<script>
+// 1. Функция для клика — карточка едет в центр при нажатии
 function moveSlider(clickedCard) {
-    if (!clickedCard) return;
-
-    const container = clickedCard.closest('.slider-container');
-    const track = container.querySelector('.slider-track');
-    const cards = Array.from(track.querySelectorAll('.card'));
-
-    
-    cards.forEach(card => card.classList.remove('active'));
-    clickedCard.classList.add('active');
-
-    
-    const containerWidth = container.offsetWidth;
-    
-    
-    const cardOffsetLeft = clickedCard.offsetLeft;
-    const cardWidth = clickedCard.offsetWidth;
-    
-    
-    const offset = (containerWidth / 2) - (cardOffsetLeft + cardWidth / 2);
-
-    track.style.transform = `translateX(${offset}px)`;
-}
-
-
-function initAllSliders() {
-    const containers = document.querySelectorAll('.slider-container');
-    
-    containers.forEach(container => {
-        const track = container.querySelector('.slider-track');
-       
-        const activeCard = track.querySelector('.card.active') || track.querySelector('.card');
-        
-        if (activeCard) {
-            
-            setTimeout(() => {
-                moveSlider(activeCard);
-            }, 100);
-        }
+    clickedCard.scrollIntoView({
+        behavior: 'smooth',
+        block: 'nearest',
+        inline: 'center'
     });
 }
 
-window.addEventListener('load', initAllSliders);
-window.addEventListener('resize', initAllSliders);
+// 2. Наблюдатель — следит какая карточка сейчас в центре экрана
+const observerOptions = {
+    root: null,
+    rootMargin: '0px',
+    threshold: 0.7
+};
+
+const observerCallback = (entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            // Убираем active у всех карточек в этом слайдере
+            const track = entry.target.closest('.slider-track');
+            track.querySelectorAll('.card').forEach(c => c.classList.remove('active'));
+            
+            // Добавляем active той карточке, что сейчас в центре
+            entry.target.classList.add('active');
+        }
+    });
+};
+
+const observer = new IntersectionObserver(observerCallback, observerOptions);
+
+// 3. Запуск после полной загрузки страницы (ждем пока загрузятся все картинки)
+window.addEventListener('load', () => {
+    const cards = document.querySelectorAll('.card');
+    
+    // Подключаем каждую карточку к наблюдателю
+    cards.forEach(card => {
+        observer.observe(card);
+    });
+
+    // При загрузке страницы центрируем первую карточку в каждом слайдере
+    const sliders = document.querySelectorAll('.slider-container');
+    sliders.forEach(slider => {
+        const firstCard = slider.querySelector('.card');
+        if (firstCard) {
+            setTimeout(() => {
+                firstCard.scrollIntoView({ inline: 'center' });
+            }, 100);
+        }
+    });
+});
 </script>
 
 </body>

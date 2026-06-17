@@ -608,12 +608,14 @@ img {
     .slider-track {
         padding: 0 7.5vw !important; 
         gap: 12px;
+        align-items: flex-start;
     }
 
     .card {
         width: 85vw !important;
         height: auto !important;
-        padding: 12px !important; 
+        min-height: 0 !important;
+        padding: 10px !important; 
         border-radius: 20px;
         opacity: 0.4;
         transform: scale(0.92);
@@ -629,8 +631,14 @@ img {
     }
 
     .card-image img {
+        max-height: none !important;
         border-radius: 12px;
         max-height: 55vh;
+    }
+
+    .card-image {
+        height: auto !important;
+        display: block !important;
     }
 
     .card-text {

@@ -131,7 +131,7 @@
                 <div class="card active" onclick="moveSlider(this)">
                     <div class="card-image"><img src="img/hkp1.jpg" alt=""></div>
                     <div class="card-content">
-                        <div class="card-text">Описание работы 1</div>
+                        <div class="card-text">Группа растений - кустарников</div>
                         <div class="card-lines"><span></span><span></span></div>
                     </div>
                 </div>
@@ -139,7 +139,7 @@
                 <div class="card" onclick="moveSlider(this)">
                     <div class="card-image"><img src="img/hkp2.jpg" alt=""></div>
                     <div class="card-content">
-                        <div class="card-text">Описание работы 1</div>
+                        <div class="card-text">Фронтальная композиция на основе ритмического ряда 1</div>
                         <div class="card-lines"><span></span><span></span></div>
                     </div>
                 </div>
@@ -147,7 +147,7 @@
                 <div class="card" onclick="moveSlider(this)">
                     <div class="card-image"><img src="img/hkp3.jpg" alt=""></div>
                     <div class="card-content">
-                        <div class="card-text">Описание работы 1</div>
+                        <div class="card-text">Фронтальная композиция на основе ритмического ряда 2</div>
                         <div class="card-lines"><span></span><span></span></div>
                     </div>
                 </div>
@@ -155,7 +155,7 @@
                 <div class="card" onclick="moveSlider(this)">
                     <div class="card-image"><img src="img/hkp4.jpg" alt=""></div>
                     <div class="card-content">
-                        <div class="card-text">Описание работы 1</div>
+                        <div class="card-text">Арт-объект в стиле лофт с темой огнетушителя</div>
                         <div class="card-lines"><span></span><span></span></div>
                     </div>
                 </div>
@@ -163,7 +163,7 @@
                 <div class="card" onclick="moveSlider(this)">
                     <div class="card-image"><img src="img/hkp5.jpg" alt=""></div>
                     <div class="card-content">
-                        <div class="card-text">Описание работы 1</div>
+                        <div class="card-text">Макет - динамика</div>
                         <div class="card-lines"><span></span><span></span></div>
                     </div>
                 </div>
@@ -171,7 +171,7 @@
                 <div class="card" onclick="moveSlider(this)">
                     <div class="card-image"><img src="img/hkp6.jpg" alt=""></div>
                     <div class="card-content">
-                        <div class="card-text">Описание работы 1</div>
+                        <div class="card-text">Макет - статика</div>
                         <div class="card-lines"><span></span><span></span></div>
                     </div>
                 </div>
@@ -179,7 +179,7 @@
                 <div class="card" onclick="moveSlider(this)">
                     <div class="card-image"><img src="img/hkp7.jpg" alt=""></div>
                     <div class="card-content">
-                        <div class="card-text">Описание работы 1</div>
+                        <div class="card-text">Макет - статика</div>
                         <div class="card-lines"><span></span><span></span></div>
                     </div>
                 </div>
@@ -187,7 +187,7 @@
                 <div class="card active" onclick="moveSlider(this)">
                     <div class="card-image"><img src="img/hkp8.jpg" alt=""></div>
                     <div class="card-content">
-                        <div class="card-text">Описание работы 1</div>
+                        <div class="card-text">Стелаж - перегородка. Волна</div>
                         <div class="card-lines"><span></span><span></span></div>
                     </div>
                 </div>
@@ -195,7 +195,7 @@
                 <div class="card active" onclick="moveSlider(this)">
                     <div class="card-image"><img src="img/hkp9.jpg" alt=""></div>
                     <div class="card-content">
-                        <div class="card-text">Описание работы 1</div>
+                        <div class="card-text">Плакат, нарисованный от пятна</div>
                         <div class="card-lines"><span></span><span></span></div>
                     </div>
                 </div>
@@ -495,8 +495,7 @@ function scrollManual(btn, direction) {
     const categoryBlock = btn.closest('.category-block');
     const container = categoryBlock.querySelector('.slider-container');
     
-    // Вместо фиксированного шага просто скроллим на 400 пикселей. 
-    // Браузер сам "дотянет" (snap) до центра ближайшей карточки.
+    
     const step = 400; 
     
     container.scrollBy({ 

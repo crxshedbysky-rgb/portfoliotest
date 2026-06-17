@@ -6,7 +6,7 @@
 
 html, body {
     max-width: 100%;
-    overflow-x: hidden; /* Убирает горизонтальный дергающийся скролл */
+    overflow-x: hidden; 
 }
 
 html {
@@ -35,21 +35,21 @@ body {
 .photo-wrapper {
     flex-shrink: 0;
     position: relative;
-    padding-right: 20px; /* Отступ для смещенной рамки */
+    padding-right: 20px; 
     padding-bottom: 20px;
 }
 
 .photo-frame img {
     width: 100%;
     display: block;
-    border: 1px solid rgb(75, 85, 58); /* Тонкая темная рамка вокруг фото */
-    filter: sepia(0.2); /* Легкий эффект старины под стиль сайта */
+    border: 1px solid rgb(75, 85, 58); 
+    filter: sepia(0.2); 
     transition: 0.3s;
 }
 
 .photo-frame {
     position: relative;
-    width: 320px; /* Ширина фото на компьютере */
+    width: 320px; 
     z-index: 2;
 }
 
@@ -64,7 +64,7 @@ body {
     left: 20px;
     width: 100%;
     height: 100%;
-    border: 1px solid rgb(201, 201, 167); /* Светлая рамка */
+    border: 1px solid rgb(201, 201, 167); 
     z-index: -1;
     transition: 0.4s;
 }
@@ -159,7 +159,7 @@ body {
 .content {
     margin-left: 280px;
     width: calc(100% - 280px);
-    overflow-x: hidden; /* Фикс белой полосы справа */
+    overflow-x: hidden; 
 }
 
 
@@ -250,7 +250,7 @@ h2 {
 img {
     max-width: 100%;
     height: auto;
-    /* Удалил padding: 5px и border, которые давали лишний зазор */
+    
     display: block; 
 }
 
@@ -327,7 +327,7 @@ img {
 
 .slider-track {
     display: flex;
-    /* Большой отступ по бокам, чтобы карточки могли встать по центру */
+    
     padding: 0 35vw; 
     gap: 30px;
     width: max-content;
@@ -336,20 +336,20 @@ img {
 
 .card {
     flex-shrink: 0;
-    width: 450px; /* Базовая ширина для десктопа */
-    height: auto; /* ВЫСОТА ТЕПЕРЬ АВТОМАТИЧЕСКАЯ */
-    min-height: 300px; /* Чтобы карточка не была слишком сплюснутой */
+    width: 450px; 
+    height: auto; 
+    min-height: 300px; 
     background-color: rgb(75, 85, 58);
     border: 1px solid rgb(201, 201, 167);
-    border-radius: 30px; /* Немного уменьшил для аккуратности */
+    border-radius: 30px; 
     
-    /* ОТСТУПЫ: уменьшил в два раза (было 30px) */
+    
     padding: 15px; 
     
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-start; /* Контент прижат к верху */
+    justify-content: flex-start; 
     overflow: hidden; 
     
     opacity: 0.3;
@@ -358,9 +358,9 @@ img {
     scroll-snap-align: center;
     cursor: pointer;
 
-    will-change: transform, opacity; /* Говорим браузеру подготовить видеокарту */
-    backface-visibility: hidden;    /* Убирает мерцание при анимации */
-    transform: translateZ(0);       /* Еще один хак для включения 3D ускорения */
+    will-change: transform, opacity; 
+    backface-visibility: hidden;    
+    transform: translateZ(0);       
 }
 
 
@@ -377,7 +377,7 @@ img {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: rgba(0,0,0,0.1); /* Легкая подложка, если фото не на весь контейнер */
+    background: rgba(0,0,0,0.1); 
     border-radius: 20px;
     overflow: hidden;
 }
@@ -385,11 +385,11 @@ img {
 .card-image img {
     width: 100%;
     height: auto;
-    max-height: 70vh; /* Чтобы слишком длинные вертикальные фото не уходили за экран */
+    max-height: 70vh; 
     object-fit: contain;
     border-radius: 20px;
-    padding: 0; /* Убираем внутренний отступ у самой картинки */
-    border: none; /* Убираем рамку вокруг картинки */
+    padding: 0; 
+    border: none; 
 }
 
 .card-image::before, .card-image::after {
@@ -399,7 +399,7 @@ img {
 
 .card-content {
     width: 100%;
-    padding: 15px 5px 5px 5px; /* Уменьшенные отступы текста */
+    padding: 15px 5px 5px 5px; 
     flex-shrink: 0;
     text-align: center;
 }
@@ -438,7 +438,7 @@ img {
     margin-bottom: 80px;
     width: 100%;
     position: relative;
-    /* Увеличиваем отступы по бокам, чтобы кнопки не прилипали к карточкам */
+   
     padding: 0 80px; 
 }
 
@@ -464,13 +464,13 @@ img {
     cursor: pointer;
     z-index: 100;
     
-    /* Идеальное центрирование стрелочки */
+   
     display: flex;
     align-items: center;
     justify-content: center;
     line-height: 1;
     font-size: 1.5rem;
-    padding-bottom: 4px; /* Небольшая компенсация шрифта, чтобы стрелка была в центре */
+    padding-bottom: 4px; 
     
     transition: 0.3s;
 }
@@ -484,7 +484,7 @@ img {
 }
 
 
-/* ПОЛНАЯ АДАПТАЦИЯ ДЛЯ МОБИЛОК - ОБНОВЛЕННАЯ */
+
 @media screen and (max-width: 768px) {
     
     html, body {
@@ -499,7 +499,7 @@ img {
         background-color: rgb(224, 222, 210);
     }
 
-    /* 1. НАВИГАЦИЯ (Sidebar) */
+   
     .sidebar {
         width: 100% !important;
         height: auto;
@@ -523,7 +523,7 @@ img {
         font-size: 0.8rem;
         padding: 12px 5px;
         margin: 0;
-        /* ЦЕНТРИРОВАНИЕ ТЕКСТА В КНОПКАХ */
+        
         display: flex;
         align-items: center;
         justify-content: center;
@@ -538,7 +538,7 @@ img {
         grid-column: 1 / 3;
     }
 
-    /* 2. КОНТЕНТ И ШАПКА */
+   
     .content {
         margin-left: 0 !important;
         width: 100% !important;
@@ -556,12 +556,12 @@ img {
 
     .college-name { font-size: 0.7rem; line-height: 1.4; }
 
-    /* 3. СЕКЦИИ И ТЕКСТ */
+    
     .info-section {
         padding: 40px 0 !important;
     }
 
-    /* Исправляем отступ "О себе" и других текстовых блоков */
+  
     .text-block, h2, .category-title {
         padding-left: 20px !important;
         padding-right: 20px !important;
@@ -581,7 +581,7 @@ img {
         margin-bottom: 12px;
     }
 
-    /* Длинные заголовки категорий в Работах */
+    
     .category-title {
         font-size: 1.1rem !important;
         line-height: 1.3 !important;
@@ -589,13 +589,13 @@ img {
         border-left: 3px solid rgb(75, 85, 58);
     }
 
-    /* 4. СЛАЙДЕР И КАРТОЧКИ */
+    
     .category-block {
         padding: 0 !important;
         margin-bottom: 40px;
     }
 
-    /* СКРЫВАЕМ СТРЕЛКИ НАВИГАЦИИ */
+    
     .nav-btn {
         display: none !important;
     }
@@ -606,14 +606,14 @@ img {
     }
 
     .slider-track {
-        padding: 0 7.5vw !important; /* Центрирование карточки */
+        padding: 0 7.5vw !important; 
         gap: 12px;
     }
 
     .card {
         width: 85vw !important;
         height: auto !important;
-        padding: 12px !important; /* Уменьшенный отступ внутри карточки */
+        padding: 12px !important; 
         border-radius: 20px;
         opacity: 0.4;
         transform: scale(0.92);
@@ -644,23 +644,22 @@ img {
     }
 
     .divider, .main-header {
-        background-attachment: scroll !important; /* Меняем fixed на scroll */
+        background-attachment: scroll !important; 
     }
 
     .about-container {
-        flex-direction: column; /* Текст и фото в одну колонку */
-        align-items: center;
+        flex-direction: column; 
         gap: 40px;
     }
 
     .photo-wrapper {
         padding-right: 15px;
         padding-bottom: 15px;
-        order: 2; /* Фото будет после текста */
+        order: 2; 
     }
 
     .photo-frame {
-        width: 260px; /* Чуть меньше на мобильных */
+        width: 260px; 
     }
 
     .text-block {
